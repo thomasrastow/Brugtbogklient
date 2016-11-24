@@ -1,6 +1,6 @@
 var SDK = {
 
-  serverURL: "http://localhost:8000",
+  serverURL: "https://localhost:8000",
 
   request: function (options, cb) {
 
@@ -24,8 +24,9 @@ var SDK = {
 
   Book: {
     getAll: function (cb) {
-      SDK.request({method: "GET", url: "/getbooks", headers: {filter: {include: ["authors", "publisher"]}}}, cb);
+      SDK.request({method: "GET", url: "/getbooks"}, cb);
     },
+
     create: function (data, cb) {
       SDK.request({method: "POST", url: "/books", data: data, headers: {authorization: SDK.Storage.load("tokenId")}}, cb);
     }
@@ -33,7 +34,7 @@ var SDK = {
 
   User: {
     getAll: function (cb) {
-      SDK.request({method: "GET", url: "/staffs"}, cb);
+      SDK.request({method: "GET", url: "/getusers"}, cb);
     },
     current:function () {
       return SDK.Storage.load("user");
@@ -64,7 +65,7 @@ var SDK = {
         username: username,
         password: password
       },
-      url: "/staffs/login?include=user",
+      url: "/login",
       method: "POST"
     }, function (err, data) {
 

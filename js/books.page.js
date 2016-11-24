@@ -13,7 +13,6 @@ $(document).ready(function () {
           "<td>" + book.title  + "</td>" +
           "<td>" + book.author + "</td>" +
           "<td>" + book.edition + "</td>" +
-          "<td>" + book.price + "</td>" +
         "</tr>")
     });
 
