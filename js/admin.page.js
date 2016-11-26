@@ -18,6 +18,7 @@ $(document).ready(function () {
         "<td>" + book.title + "</td>" +
         "<td>" + book.subtitle + "</td>" +
         "<td>" + printAuthors(book.authors) + "</td>" +
+        "<td>" + printAuthors(book.authors) + "</td>" +
         "<td>" + book.publisher.name + "</td>" +
         "<td>Kr. " + book.price + ",-</td>" +
         "</tr>");
@@ -44,7 +45,7 @@ $(document).ready(function () {
   });
 
   var currentUser = SDK.User.current();
-  $("#currentUserName").text(currentUser.firstName +  " " + currentUser.lastName);
+  $("#currentUsername").text(currentUser.firstName +  " " + currentUser.lastName);
 
   /**
    * Add a new Book
