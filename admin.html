@@ -2,13 +2,15 @@
 <html lang="en">
 <head>
 
-  <link rel="stylesheet" href="lib/css/bootstrap.css">
-  <link rel="stylesheet" href="lib/css/bootstrap.lumen.min.css">
-  <link rel="stylesheet" href="css/sticky-footer.css">
+    <link rel="stylesheet" href="lib/css/bootstrap.css">
+    <link rel="stylesheet" href="lib/css/bootstrap.lumen.min.css">
+    <link rel="stylesheet" href="css/sticky-footer.css">
+    <link rel="stylesheet" href="lib/css/dataTables.bootstrap.min.css">
 
 
-  <meta charset="UTF-8">
-  <title>Administrator panel</title>
+
+    <meta charset="UTF-8">
+    <title>Administrator panel</title>
 
 </head>
 <body>
@@ -16,173 +18,276 @@
 
 <!-- New Book Model -->
 <div class="modal fade" id="newBookModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
-            aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title">Opret ny bog</h4>
-      </div>
-      <div class="modal-body">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                        aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">Opret ny bog</h4>
+            </div>
+            <div class="modal-body">
 
-        <div class="row" >
-          <div class="col-md-12">
-            <div class="form-group">
-              <label class="control-label" for="bookIsbn">ISBN</label>
-              <input class="form-control" id="bookIsbn" type="text">
+                <div class="row" >
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label class="control-label" for="bookIsbn">ISBN</label>
+                            <input class="form-control" id="bookIsbn" type="text">
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label class="control-label" for="bookTitle">Titel</label>
+                            <input class="form-control" id="bookTitle" type="text">
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label class="control-label" for="bookAuthor">Forfatter</label>
+                            <input class="form-control" id="bookAuthor" type="text">
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        <div class="form-group">
+                            <label class="control-label" for="bookEdition">Udgave</label>
+                            <input class="form-control" id="bookEdition" type="text">
+                        </div>
+                    </div>
+                </div>
+
             </div>
-          </div>
-          <div class="col-md-12">
-            <div class="form-group">
-              <label class="control-label" for="bookTitle">Titel</label>
-              <input class="form-control" id="bookTitle" type="text">
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Luk</button>
+                <button type="button" class="btn btn-success" id="createBookButton">Opret bog</button>
             </div>
-          </div>
-          <div class="col-md-12">
-            <div class="form-group">
-              <label class="control-label" for="bookAuthor">Forfatter</label>
-              <input class="form-control" id="bookAuthor" type="text">
-            </div>
-          </div>
-          <div class="col-md-4">
-            <div class="form-group">
-              <label class="control-label" for="bookEdition">Udgave</label>
-              <input class="form-control" id="bookEdition" type="text">
-            </div>
-          </div>
         </div>
-
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Luk</button>
-        <button type="button" class="btn btn-success" id="createBookButton">Opret bog</button>
-      </div>
     </div>
-  </div>
 </div>
 
 <!-- New User Modal -->
 <div class="modal fade" id="newUserModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
-            aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title">New user title</h4>
-      </div>
-      <div class="modal-body">
-        ...
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
-      </div>
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                        aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">Opret ny bruger</h4>
+            </div>
+            <div class="modal-body">
+
+                <div class="row" >
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label class="control-label" for="userUsername">Brugernavn</label>
+                            <input class="form-control" id="userUsername" type="text">
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label class="control-label" for="userPassword">Adgangskode</label>
+                            <input class="form-control" id="userPassword" type="text">
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label class="control-label" for="userEmail">Email</label>
+                            <input class="form-control" id="userEmail" type="text">
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label class="control-label" for="userPhonenumber">Tlf. nummer</label>
+                            <input class="form-control" id="userPhonenumber" type="text">
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label class="control-label" for="userAddress">Adresse</label>
+                            <input class="form-control" id="userAddress" type="text">
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        <div class="form-group">
+                            <label class="control-label" for="userMobilePay">MobilePay</label>
+                            <input class="form-control" id="userMobilePay" type="text">
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        <div class="form-group">
+                            <label class="control-label" for="userCash">Kontanter</label>
+                            <input class="form-control" id="userCash" type="text">
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        <div class="form-group">
+                            <label class="control-label" for="userTransfer">bankoverførsel</label>
+                            <input class="form-control" id="userTransfer" type="text">
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        <div class="form-group">
+                            <label class="control-label" for="userType">Type</label>
+                            <input class="form-control" id="userType" type="text">
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Luk</button>
+                <button type="button" class="btn btn-success" id="createUserButton">Opret bruger</button>
+            </div>
+        </div>
     </div>
-  </div>
 </div>
 
 
 <div class="container">
 
-  <div class="row">
-    <div class="col-lg-12">
+    <div class="row">
+        <div class="col-lg-12">
 
-      <nav class="navbar navbar-inverse">
-        <div class="container-fluid">
-          <div class="navbar-header">
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
-                    data-target="#bs-example-navbar-collapse-2">
-              <span class="sr-only">Toggle navigation</span>
-              <span class="icon-bar"></span>
-              <span class="icon-bar"></span>
-              <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand" href="index.html">CBS Brugtbogsbørs</a>
-          </div>
+            <nav class="navbar navbar-inverse">
+                <div class="container-fluid">
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                                data-target="#bs-example-navbar-collapse-2">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        <a class="navbar-brand" href="index.html">CBS Brugtbogsbørs</a>
+                    </div>
 
-          <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-2">
-            <ul class="nav navbar-nav">
-              <li><a>Hej, <span id="CurrentUserName"></span></a></li>
-            </ul>
-            <ul class="nav navbar-nav navbar-right">
-              <li><a id="logOutLink">Log ud</a></li>
-            </ul>
-          </div>
+                    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-2">
+                        <ul class="nav navbar-nav">
+                            <li><a>Hej, <span id="CurrentUserName"></span></a></li>
+                        </ul>
+                        <ul class="nav navbar-nav navbar-right">
+                            <li><a id="logOutLink">Log ud</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+
+
+            <div class="page-header">
+                <h1>Administrator panel</h1>
+            </div>
+
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Bøger</h3>
+                </div>
+                <div class="panel-body">
+
+                    <table class="table table-striped" id="booksTable">
+                        <thead>
+                        <th>ISBN</th>
+                        <th>Titel</th>
+                        <th>Forfatter</th>
+                        <th>Udgave</th>
+                        <th>Slet bog</th>
+                        </thead>
+                    </table>
+
+                    <hr>
+                    <!-- Button trigger modal -->
+                    <button class="btn btn-success" id="addNewBookButton">
+                        <span class="glyphicon glyphicon-plus"></span> Opret ny bog
+                    </button>
+
+                </div>
+            </div>
+
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Brugere</h3>
+                </div>
+                <div class="panel-body">
+
+                    <table class="table table-striped" id="usersTable">
+                        <thead>
+                        <th>Brugernavn</th>
+                        <th>Email</th>
+                        <th>Tlf. nummer</th>
+                        <th>ID</th>
+                        <th>Slet bog</th>
+                        </thead>
+                    </table>
+
+
+                    <hr>
+                    <!-- Button trigger modal -->
+                    <button class="btn btn-success" id="addNewUserButton">
+                        <span class="glyphicon glyphicon-plus"></span> Opret ny bruger
+                    </button>
+
+                </div>
+            </div>
+
         </div>
-      </nav>
-
-
-      <div class="page-header">
-        <h1>Administrator panel</h1>
-      </div>
-
-      <div class="panel panel-primary">
-        <div class="panel-heading">
-          <h3 class="panel-title">Bøger</h3>
-        </div>
-        <div class="panel-body">
-
-          <table class="table table-striped">
-            <thead>
-            <th>ISBN</th>
-            <th>Titel</th>
-            <th>Forfatter</th>
-            <th>Udgave</th>
-            </thead>
-            <tbody id="booksTableBody">
-
-            </tbody>
-          </table>
-
-          <hr>
-          <!-- Button trigger modal -->
-          <button class="btn btn-success" id="addNewBookButton">
-            <span class="glyphicon glyphicon-plus"></span> Opret ny bog
-          </button>
-
-        </div>
-      </div>
-
-      <div class="panel panel-primary">
-        <div class="panel-heading">
-          <h3 class="panel-title">Brugere</h3>
-        </div>
-        <div class="panel-body">
-
-          <table class="table table-striped">
-            <thead>
-            <th>Brugernavn</th>
-            <th>Email</th>
-            <th>Tlf. nummer</th>
-            <th>ID</th>
-            </thead>
-            <tbody id="usersTableBody">
-
-            </tbody>
-          </table>
-
-          <hr>
-          <button class="btn btn-success" data-toggle="modal" data-target="#newUserModal">
-            <span class="glyphicon glyphicon-plus"></span> Opret ny bruger
-          </button>
-
-        </div>
-      </div>
-
     </div>
-  </div>
 </div>
 
 <footer class="footer">
-  <div class="container">
-    <p class="text-muted">2016 © All rights reserved - CBS Brugtbogsbørs</p>
-  </div>
+    <div class="container">
+        <p class="text-muted">2016 © All rights reserved - CBS Brugtbogsbørs</p>
+    </div>
 </footer>
 
 <script src="lib/js/jquery-3.1.1.js"></script>
 <script src="lib/js/bootstrap.js"></script>
+<script src="lib/js/jquery.dataTables.min.js"></script>
+<script src="lib/js/dataTables.bootstrap.min.js"></script>
+
 <script src="js/sdk.js"></script>
 <script src="js/admin.page.js"></script>
+
+
+
+
+<script type="text/javascript">
+
+    $(document).ready(function () {
+        getAllBooks();
+        getAllUsers();
+
+        //Create book button in table
+        $("#addNewBookButton").on("click", function () {
+            $('#newBookModal').modal('show');
+        });
+
+        //Create book button in pop-up window
+        $("#createBookButton").on("click", function () {
+            createBook();
+        });
+        /*
+         Create user button in table
+         $("#addNewUserButton").on("click", function () {
+         $('#newUserModal').modal('show');
+         });
+
+         //Create user button in pop-up window
+         $("createUserButton").on("click", function () {
+         createUser();
+         });
+         */
+        //Delete button in book table
+        $('#booksTable').on("click", "button", function () {
+            var data = table.row( $(this).parents('tr') ).data();
+            alert(data[0] + "Ønskes denne bog slettet?");
+        });
+
+        //Delete button in user table
+        $('#usersTable').on("click", "button", function () {
+            var data = table.row( $(this).parents('tr') ).data();
+            alert(data[0] + "Ønskes denne bruger slettet?");
+        })
+    });
+
+
+</script>
 
 </body>
 </html>

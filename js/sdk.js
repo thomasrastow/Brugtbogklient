@@ -26,9 +26,8 @@ var SDK = {
     getAll: function (cb) {
       SDK.request({method: "GET", url: "/getbooks"}, cb);
     },
-
     create: function (data, cb) {
-      SDK.request({method: "POST", url: "/books", data: data, headers: {authorization: SDK.Storage.load("tokenId")}}, cb);
+      SDK.request({method: "POST", url: "/createbook", data:data}, cb);
     }
   },
 
@@ -36,6 +35,11 @@ var SDK = {
     getAll: function (cb) {
       SDK.request({method: "GET", url: "/getusers"}, cb);
     },
+
+    create: function (data,cb) {
+      SDK.request({method: "POST", url: "/createuser", data:data}, cb);
+    },
+
     current:function () {
       return SDK.Storage.load("user");
     }

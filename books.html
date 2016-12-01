@@ -5,7 +5,7 @@
   <link rel="stylesheet" href="lib/css/bootstrap.css">
   <link rel="stylesheet" href="lib/css/bootstrap.lumen.min.css">
   <link rel="stylesheet" href="css/sticky-footer.css">
-
+  <link rel="stylesheet" href="lib/css/dataTables.bootstrap.min.css">
 
   <meta charset="UTF-8">
   <title>Bøger</title>
@@ -72,11 +72,26 @@
   </div>
 </footer>
 
-<script src="lib/js/jquery-3.1.1.js"></script>
+<!--<script src="lib/js/jquery-3.1.1.js"></script>
 <script src="lib/js/bootstrap.js"></script>
 <script src="js/sdk.js"></script>
 <script src="js/books.page.js"></script>
+-->
+<script src="lib/js/jquery-3.1.1.js"></script>
+<script src="lib/js/bootstrap.js"></script>
+<script src="js/sdk.js"></script>
+<script src="js/admin.page.js"></script>
 
+<script src="lib/js/jquery.dataTables.min.js"></script>
+<script src="lib/js/dataTables.bootstrap.min.js"></script>
+
+
+<script type="text/javascript">
+
+  $(document).ready(function () {
+    getAllBooks();
+  })
+</script>
 
 </body>
 </html>

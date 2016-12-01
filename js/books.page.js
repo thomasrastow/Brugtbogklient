@@ -1,6 +1,6 @@
 $(document).ready(function () {
 
-  //Fires on page-load
+  /*//Fires on page-load
   SDK.Book.getAll(function(err, data){
     if(err) throw err;
 
@@ -16,7 +16,24 @@ $(document).ready(function () {
         "</tr>")
     });
 
-  });
+  });*/
+    function getAllBooks() {
+        //Fires on page-load
+        SDK.Book.getAll(function (err, data) {
+            if (err) throw err;
+
+            $("#booksTable").DataTable({
+                data: data,
+                columns: [
+                    {data : "isbn"},
+                    {data : "title"},
+                    {data : "author"},
+                    {data : "edition"}
+                ]
+            });
+
+        })
+    }
 
 });
 

@@ -1,38 +1,43 @@
-$(document).ready(function () {
 
-  //Fires on page-load
-  SDK.Book.getAll(function (err, data) {
-    if (err) throw err;
 
-    var $booksTableBody = $("#booksTableBody");
-    data.forEach(function (book, i) {
+  function getAllBooks() {
+    //Fires on page-load
+    SDK.Book.getAll(function (err, data) {
+      if (err) throw err;
 
-      $booksTableBody.append(
-          "<tr>" +
-          "<td>" + book.isbn + "</td>" +
-          "<td>" + book.title  + "</td>" +
-          "<td>" + book.author + "</td>" +
-          "<td>" + book.edition + "</td>" +
-          "</tr>")
+      $("#booksTable").DataTable({
+        data: data,
+        columns: [
+          {data : "isbn"},
+          {data : "title"},
+          {data : "author"},
+          {data : "edition"},
+          {defaultContent: "<button>Slet</button>"}
+        ]
     });
-  });
 
-  //Fires on page-load
-  SDK.User.getAll(function (err, users) {
-    if (err) throw err;
+   })
+  }
 
-    var $usersTableBody = $("#usersTableBody");
-    users.forEach(function (user, i) {
+  function getAllUsers () {
+    //Fires on page-load
+    SDK.User.getAll(function (err, data) {
+      if (err) throw JSON.stringify(err);
 
-      $usersTableBody.append(
-        "<tr>" +
-        "<td>" + user.username + "</td>" +
-        "<td>" + user.email + "</td>" +
-        "<td>" + user.phonenumber + "</td>" +
-        "<td>" + user.id + "</td>" +
-        "</tr>");
+      $("#usersTable").DataTable({
+            data: data,
+            columns: [
+              {data : "username"},
+              {data : "email"},
+              {data : "phonenumber"},
+              {data : "userId"},
+              {defaultContent: "<button>Slet</button>"}
+            ]
+          }
+
+      )
     });
-  });
+  }
 
   var currentUser = SDK.User.current();
   $("#currentUsername").text(currentUser.firstName +  " " + currentUser.lastName);
@@ -40,10 +45,53 @@ $(document).ready(function () {
   /**
    * Add a new Book
    */
-  $("#addNewBookButton").on("click", function () {
+function createBook() {
+    //Create JSON object
+    var book = {
+      isbn: +$("#bookIsbn").val(),
+      title: $("#bookTitle").val(),
+      author: $("#bookAuthor").val(),
+      edition: $("#bookEdition").val()
+    };
+
+
+    //Create book
+    SDK.Book.create(book, function(err, data){
+      if(err) throw JSON.stringify(err);
+
+      alert(JSON.stringify(data));
+
+      $("#newBookModal").modal("hide");
+    });
+
+  }
+
+function createUser() {
+  //Create JSON object
+  var user = {
+    username: +$("#userUsername").val(),
+    password: +$("#userPassword").val(),
+    phonenumber: +$("#userPhonenumber").val(),
+    address: +$("#userAddress").val(),
+    email: +$("#userEmail").val(),
+    mobilepay: +$("#userMobilePay").val(),
+    cash: +$("#userCash").val(),
+    transfer: +$("#userTransfer").val(),
+    type: +$("#userType").val(),
+  };
+
+  //Create user
+  SDK.User.create(user, function(err, data) {
+    if(err) throw JSON.stringify(err);
+
+    alert(JSON.stringify(data));
+    $("#newUserModal").modal("hide");
+  });
+
+}
 
     //Show modal
-    $('#newBookModal').modal('show');
+    /*$('#newBookModal').modal('show');
 
     //Fetch publishers, and set to DOM
     SDK.Publisher.getAll(function (err, publishers) {
@@ -63,10 +111,10 @@ $(document).ready(function () {
 
       });
 
-    });
+    });*/
 
     //Fetch authors, and set to DOM
-    SDK.Author.getAll(function(err, authors){
+    /*SDK.Author.getAll(function(err, authors){
       if (err) throw err;
 
       var $authorsCheckbox = $("#authorsCheckbox");
@@ -83,36 +131,7 @@ $(document).ready(function () {
 
       });
 
-    });
-
-    $("#createBookButton").on("click", function(){
-
-      //Create JSON object
-      var book = {
-        title: $("#bookTitle").val(),
-        subtitle: $("#bookSubTitle").val(),
-        pageCount: $("#bookPageCount").val(),
-        edition: $("#bookEdition").val(),
-        price: $("#bookPrice").val(),
-        authorIds: [],
-        publisherId: $("input[name=publisherRadios]:checked").val()
-      };
-
-      //Fetch selected authors
-      $('#authorsCheckbox').find('input:checked').each(function() {
-        book.authorIds.push($(this).val());
-      });
-
-      //Create book
-      SDK.Book.create(book, function(err, data){
-        if(err) throw err;
-
-        $("#newBookModal").modal("hide");
-      });
-
-    });
-
-  });
+    });*/
 
   /**
    * Add a new User
@@ -126,5 +145,3 @@ $(document).ready(function () {
     window.location.href = "index.html";
   });
 
-
-});

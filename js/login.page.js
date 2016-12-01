@@ -13,7 +13,6 @@ $(document).ready(function () {
       if(err) {
         return $("#loginForm").find(".form-group").addClass("has-error");
       }
-
       SDK.Storage.persist("user", data);
 
       //Login OK!
