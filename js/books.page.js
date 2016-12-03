@@ -1,4 +1,4 @@
-$(document).ready(function () {
+
 
   /*//Fires on page-load
   SDK.Book.getAll(function(err, data){
@@ -35,5 +35,5 @@ $(document).ready(function () {
         })
     }
 
-});
+
 

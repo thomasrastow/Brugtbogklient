@@ -66,7 +66,10 @@ function createBook() {
 
   }
 
-function createUser() {
+  /**
+   * Add a new user
+   */
+  function createUser() {
   //Create JSON object
   var user = {
     username: +$("#userUsername").val(),
@@ -77,7 +80,7 @@ function createUser() {
     mobilepay: +$("#userMobilePay").val(),
     cash: +$("#userCash").val(),
     transfer: +$("#userTransfer").val(),
-    type: +$("#userType").val(),
+    type: +$("#userType").val()
   };
 
   //Create user
@@ -85,60 +88,11 @@ function createUser() {
     if(err) throw JSON.stringify(err);
 
     alert(JSON.stringify(data));
+
     $("#newUserModal").modal("hide");
   });
 
 }
-
-    //Show modal
-    /*$('#newBookModal').modal('show');
-
-    //Fetch publishers, and set to DOM
-    SDK.Publisher.getAll(function (err, publishers) {
-      if (err) throw err;
-
-      var $publishersRadio = $("#publishersRadio");
-      publishers.forEach(function (publisher, i) {
-
-        $publishersRadio.append(
-          '<div class="radio">' +
-            '<label>' +
-              '<input type="radio" name="publisherRadios" id="optionsRadios' + i + '" value="' + publisher.id + '">' +
-              publisher.name +
-            '</label>' +
-          '</div>'
-        );
-
-      });
-
-    });*/
-
-    //Fetch authors, and set to DOM
-    /*SDK.Author.getAll(function(err, authors){
-      if (err) throw err;
-
-      var $authorsCheckbox = $("#authorsCheckbox");
-      authors.forEach(function(author, i){
-
-        $authorsCheckbox.append(
-          '<div class="checkbox">' +
-            '<label>' +
-              '<input type="checkbox" value="' + author.id + '">' +
-              author.firstName + ' ' + author.lastName +
-            '</label>' +
-          '</div>'
-        );
-
-      });
-
-    });*/
-
-  /**
-   * Add a new User
-   */
-  $("#addNewUserButton").on("click", function () {
-
-  });
 
   $("#logOutLink").on("click", function(){
     SDK.logOut();

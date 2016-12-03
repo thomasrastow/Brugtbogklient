@@ -15,6 +15,94 @@
 </head>
 <body>
 
+<div class="container">
+
+    <div class="row">
+        <div class="col-lg-12">
+
+            <nav class="navbar navbar-inverse">
+                <div class="container-fluid">
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                                data-target="#bs-example-navbar-collapse-2">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        <a class="navbar-brand" href="index.html">CBS Brugtbogsbørs</a>
+                    </div>
+
+                    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-2">
+                        <ul class="nav navbar-nav">
+                            <li><a>Hej, <span id="CurrentUserName"></span></a></li>
+                        </ul>
+                        <ul class="nav navbar-nav navbar-right">
+                            <li><a href="index.html">Log ud</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+
+
+            <div class="page-header">
+                <h1>Administrator panel</h1>
+            </div>
+
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Bøger</h3>
+                </div>
+                <div class="panel-body">
+
+                    <table class="table table-striped" id="booksTable">
+                        <thead>
+                        <th>ISBN</th>
+                        <th>Titel</th>
+                        <th>Forfatter</th>
+                        <th>Udgave</th>
+                        <th>Slet bog</th>
+                        </thead>
+                    </table>
+
+                    <hr>
+                    <!-- Button trigger modal -->
+                    <button class="btn btn-success" id="addNewBookButton">
+                        <span class="glyphicon glyphicon-plus"></span> Opret ny bog
+                    </button>
+
+                </div>
+            </div>
+
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Brugere</h3>
+                </div>
+                <div class="panel-body">
+
+                    <table class="table table-striped" id="usersTable">
+                        <thead>
+                        <th>Brugernavn</th>
+                        <th>Email</th>
+                        <th>Tlf. nummer</th>
+                        <th>ID</th>
+                        <th>Slet bog</th>
+                        </thead>
+                    </table>
+
+
+                    <hr>
+                    <!-- Button trigger modal -->
+                    <button class="btn btn-success" id="addNewUserButton">
+                        <span class="glyphicon glyphicon-plus"></span> Opret ny bruger
+                    </button>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
 
 <!-- New Book Model -->
 <div class="modal fade" id="newBookModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
@@ -141,95 +229,6 @@
 </div>
 
 
-<div class="container">
-
-    <div class="row">
-        <div class="col-lg-12">
-
-            <nav class="navbar navbar-inverse">
-                <div class="container-fluid">
-                    <div class="navbar-header">
-                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
-                                data-target="#bs-example-navbar-collapse-2">
-                            <span class="sr-only">Toggle navigation</span>
-                            <span class="icon-bar"></span>
-                            <span class="icon-bar"></span>
-                            <span class="icon-bar"></span>
-                        </button>
-                        <a class="navbar-brand" href="index.html">CBS Brugtbogsbørs</a>
-                    </div>
-
-                    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-2">
-                        <ul class="nav navbar-nav">
-                            <li><a>Hej, <span id="CurrentUserName"></span></a></li>
-                        </ul>
-                        <ul class="nav navbar-nav navbar-right">
-                            <li><a id="logOutLink">Log ud</a></li>
-                        </ul>
-                    </div>
-                </div>
-            </nav>
-
-
-            <div class="page-header">
-                <h1>Administrator panel</h1>
-            </div>
-
-            <div class="panel panel-primary">
-                <div class="panel-heading">
-                    <h3 class="panel-title">Bøger</h3>
-                </div>
-                <div class="panel-body">
-
-                    <table class="table table-striped" id="booksTable">
-                        <thead>
-                        <th>ISBN</th>
-                        <th>Titel</th>
-                        <th>Forfatter</th>
-                        <th>Udgave</th>
-                        <th>Slet bog</th>
-                        </thead>
-                    </table>
-
-                    <hr>
-                    <!-- Button trigger modal -->
-                    <button class="btn btn-success" id="addNewBookButton">
-                        <span class="glyphicon glyphicon-plus"></span> Opret ny bog
-                    </button>
-
-                </div>
-            </div>
-
-            <div class="panel panel-primary">
-                <div class="panel-heading">
-                    <h3 class="panel-title">Brugere</h3>
-                </div>
-                <div class="panel-body">
-
-                    <table class="table table-striped" id="usersTable">
-                        <thead>
-                        <th>Brugernavn</th>
-                        <th>Email</th>
-                        <th>Tlf. nummer</th>
-                        <th>ID</th>
-                        <th>Slet bog</th>
-                        </thead>
-                    </table>
-
-
-                    <hr>
-                    <!-- Button trigger modal -->
-                    <button class="btn btn-success" id="addNewUserButton">
-                        <span class="glyphicon glyphicon-plus"></span> Opret ny bruger
-                    </button>
-
-                </div>
-            </div>
-
-        </div>
-    </div>
-</div>
-
 <footer class="footer">
     <div class="container">
         <p class="text-muted">2016 © All rights reserved - CBS Brugtbogsbørs</p>
@@ -262,17 +261,19 @@
         $("#createBookButton").on("click", function () {
             createBook();
         });
-        /*
-         Create user button in table
+
+        //Create user button in table
          $("#addNewUserButton").on("click", function () {
-         $('#newUserModal').modal('show');
+            $('#newUserModal').modal('show');
          });
 
+
          //Create user button in pop-up window
-         $("createUserButton").on("click", function () {
+         $("#createUserButton").on("click", function () {
          createUser();
          });
-         */
+
+
         //Delete button in book table
         $('#booksTable').on("click", "button", function () {
             var data = table.row( $(this).parents('tr') ).data();

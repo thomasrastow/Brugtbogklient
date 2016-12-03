@@ -45,26 +45,25 @@
 
 
       <div class="page-header">
-        <h1>Se alle bøger</h1>
+        <div class="panel-heading">
+          <h1>Se alle bøger</h1>
+        </div>
+
       </div>
-
-      <table class="table">
-        <thead>
-
-        <th>ISBN</th>
-        <th>Titel</th>
-        <th>Forfatter</th>
-        <th>Udgave</th>
-
-        </thead>
-        <tbody id="booksTableBody">
-        </tbody>
-      </table>
-
-
+      <div class="panel-body">
+        <table class="table table-striped" id="booksTableBody">
+          <thead>
+          <th>ISBN</th>
+          <th>Titel</th>
+          <th>Forfatter</th>
+          <th>Udgave</th>
+          </thead>
+        </table>
+      </div>
     </div>
   </div>
 </div>
+
 
 <footer class="footer">
   <div class="container">
@@ -72,25 +71,22 @@
   </div>
 </footer>
 
-<!--<script src="lib/js/jquery-3.1.1.js"></script>
-<script src="lib/js/bootstrap.js"></script>
-<script src="js/sdk.js"></script>
-<script src="js/books.page.js"></script>
--->
+
 <script src="lib/js/jquery-3.1.1.js"></script>
 <script src="lib/js/bootstrap.js"></script>
-<script src="js/sdk.js"></script>
-<script src="js/admin.page.js"></script>
-
 <script src="lib/js/jquery.dataTables.min.js"></script>
 <script src="lib/js/dataTables.bootstrap.min.js"></script>
+
+<script src="js/sdk.js"></script>
+<script src="js/books.page.js"></script>
 
 
 <script type="text/javascript">
 
   $(document).ready(function () {
     getAllBooks();
-  })
+  });
+
 </script>
 
 </body>
