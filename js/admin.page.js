@@ -43,7 +43,7 @@
   $("#currentUsername").text(currentUser.firstName +  " " + currentUser.lastName);
 
   /**
-   * Add a new Book
+   * Add a new book
    */
 function createBook() {
     //Create JSON object
@@ -67,20 +67,37 @@ function createBook() {
   }
 
   /**
+   * Delete book
+   */
+  /*$('#booksTable').on( 'click', 'Slet', function (e) {
+    e.preventDefault();
+
+    Slet
+        .title( 'Slet bog' )
+        .message( "Er du sikker på du ønsker at slette denne bog?" )
+        .buttons( { "label": "Delete", "fn": function () { book.submit() } } )
+        .remove( $(this).closest('tr') );
+  } );
+  function deleteBook(btn) {
+    var book = bnt.parentNode.parentNode;
+    book.parentNode.removeChild(book);
+  }*/
+  
+  
+  /**
    * Add a new user
    */
   function createUser() {
   //Create JSON object
   var user = {
-    username: +$("#userUsername").val(),
-    password: +$("#userPassword").val(),
-    phonenumber: +$("#userPhonenumber").val(),
-    address: +$("#userAddress").val(),
-    email: +$("#userEmail").val(),
-    mobilepay: +$("#userMobilePay").val(),
-    cash: +$("#userCash").val(),
-    transfer: +$("#userTransfer").val(),
-    type: +$("#userType").val()
+    username:  $("#userUsername").val(),
+    password:  $("#userPassword").val(),
+    phonenumber: + $("#userPhonenumber").val(),
+    address:  $("#userAddress").val(),
+    email:  $("#userEmail").val(),
+    mobilepay: + $("#userMobilePay").prop("checked"),
+    cash: + $("#userCash").prop("checked"),
+    transfer: + $("#userTransfer").prop("checked")
   };
 
   //Create user

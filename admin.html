@@ -34,9 +34,6 @@
                     </div>
 
                     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-2">
-                        <ul class="nav navbar-nav">
-                            <li><a>Hej, <span id="CurrentUserName"></span></a></li>
-                        </ul>
                         <ul class="nav navbar-nav navbar-right">
                             <li><a href="index.html">Log ud</a></li>
                         </ul>
@@ -196,25 +193,19 @@
                     <div class="col-md-2">
                         <div class="form-group">
                             <label class="control-label" for="userMobilePay">MobilePay</label>
-                            <input class="form-control" id="userMobilePay" type="text">
+                            <input id="userMobilePay" type="checkbox">
                         </div>
                     </div>
                     <div class="col-md-2">
                         <div class="form-group">
                             <label class="control-label" for="userCash">Kontanter</label>
-                            <input class="form-control" id="userCash" type="text">
+                            <input id="userCash" type="checkbox">
                         </div>
                     </div>
                     <div class="col-md-2">
                         <div class="form-group">
-                            <label class="control-label" for="userTransfer">bankoverførsel</label>
-                            <input class="form-control" id="userTransfer" type="text">
-                        </div>
-                    </div>
-                    <div class="col-md-2">
-                        <div class="form-group">
-                            <label class="control-label" for="userType">Type</label>
-                            <input class="form-control" id="userType" type="text">
+                            <label class="control-label" for="userTransfer">Bankoverførsel</label>
+                            <input id="userTransfer" type="checkbox">
                         </div>
                     </div>
                 </div>
@@ -275,10 +266,18 @@
 
 
         //Delete button in book table
-        $('#booksTable').on("click", "button", function () {
-            var data = table.row( $(this).parents('tr') ).data();
-            alert(data[0] + "Ønskes denne bog slettet?");
+        $('#booksTable').on("click", "button", function (e) {
+            e.preventDefault();
+
+            Slet
+                    .title( 'Slet bog' )
+                    .message( "Er du sikker på du ønsker at slette denne bog?" )
+                    .buttons( {"label": "Slet", "fn": function () { book.submit()}})
+                    .remove( $(this).closest('tr'));
+
         });
+
+
 
         //Delete button in user table
         $('#usersTable').on("click", "button", function () {
