@@ -12,7 +12,7 @@
           {data : "title"},
           {data : "author"},
           {data : "edition"},
-          {defaultContent: "<button>Slet</button>"}
+          {defaultContent: "<button>Slet bog</button>"}
         ]
     });
 
@@ -31,7 +31,7 @@
               {data : "email"},
               {data : "phonenumber"},
               {data : "userId"},
-              {defaultContent: "<button>Slet</button>"}
+              {defaultContent: "<button>Slet bruger</button>"}
             ]
           }
 
@@ -69,20 +69,56 @@ function createBook() {
   /**
    * Delete book
    */
-  /*$('#booksTable').on( 'click', 'Slet', function (e) {
-    e.preventDefault();
 
-    Slet
-        .title( 'Slet bog' )
-        .message( "Er du sikker på du ønsker at slette denne bog?" )
-        .buttons( { "label": "Delete", "fn": function () { book.submit() } } )
-        .remove( $(this).closest('tr') );
-  } );
-  function deleteBook(btn) {
-    var book = bnt.parentNode.parentNode;
-    book.parentNode.removeChild(book);
-  }*/
-  
+
+  /*function deleteBook() {
+    $('#booksTable').on('click', 'book_remove', function (e) {
+      e.preventDefault();
+
+      deleteBook
+          .title('Slet bog')
+          .message("Er du sikker på, at du vil slette denne bog?")
+          .buttons({
+            "label": "Slet", "fn": function () {
+              deleteBook.submit()
+            }
+          })
+          .remove($(this).closest('tr'));
+    })
+  }
+  */
+
+// Kør lige igen haha
+  function deleteBook (rowBook) {
+
+    var book = rowBook.data();
+    console.log(book);
+    console.log(book.isbn);
+
+    $.ajax({
+      url: "https://localhost:8000/deletebook",
+      type: 'POST',
+      dataType: "json",
+      xhrFields: {withCredentials: true},
+      data: JSON.stringify({
+        "isbn" : book.isbn
+      }),
+
+      success: function (data) {
+        $('#booksTable').DataTable().row( $(rowBook).parents('tr') ).remove().draw();
+        alert("Bogen: " + book.title +" med ISBN: "+ book.isbn + " er slettet." );
+        console.log(JSON.stringify(data));
+      },
+
+      error: function(data) {
+        alert(JSON.stringify(data));
+      }
+    })
+
+
+  }
+
+
   
   /**
    * Add a new user
@@ -110,6 +146,11 @@ function createBook() {
   });
 
 }
+
+  /**
+   * Delete user
+   */
+
 
   $("#logOutLink").on("click", function(){
     SDK.logOut();
