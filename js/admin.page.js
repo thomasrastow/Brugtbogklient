@@ -1,4 +1,6 @@
-
+/**
+ * Get all books
+ */
 
   function getAllBooks() {
     //Fires on page-load
@@ -19,7 +21,11 @@
    })
   }
 
-  function getAllUsers () {
+/**
+ * Get all users
+ */
+
+function getAllUsers () {
     //Fires on page-load
     SDK.User.getAll(function (err, data) {
       if (err) throw JSON.stringify(err);
@@ -42,9 +48,9 @@
   var currentUser = SDK.User.current();
   $("#currentUsername").text(currentUser.firstName +  " " + currentUser.lastName);
 
-  /**
-   * Add a new book
-   */
+/**
+ * Add a new book
+ */
 function createBook() {
     //Create JSON object
     var book = {
@@ -66,32 +72,13 @@ function createBook() {
 
   }
 
-  /**
-   * Delete book
-   */
+/**
+* Delete book
+*/
 
+  function deleteBook (selectedBook) {
 
-  /*function deleteBook() {
-    $('#booksTable').on('click', 'book_remove', function (e) {
-      e.preventDefault();
-
-      deleteBook
-          .title('Slet bog')
-          .message("Er du sikker på, at du vil slette denne bog?")
-          .buttons({
-            "label": "Slet", "fn": function () {
-              deleteBook.submit()
-            }
-          })
-          .remove($(this).closest('tr'));
-    })
-  }
-  */
-
-// Kør lige igen haha
-  function deleteBook (rowBook) {
-
-    var book = rowBook.data();
+    var book = selectedBook.data();
     console.log(book);
     console.log(book.isbn);
 
@@ -105,24 +92,22 @@ function createBook() {
       }),
 
       success: function (data) {
-        $('#booksTable').DataTable().row( $(rowBook).parents('tr') ).remove().draw();
-        alert("Bogen: " + book.title +" med ISBN: "+ book.isbn + " er slettet." );
+        $('#booksTable').DataTable().row( $(selectedBook).parents('tr') ).remove().draw();
+        alert("Du har nu slettet følgende bog: " + book.title +" med ISBN: "+ book.isbn);
         console.log(JSON.stringify(data));
       },
 
-      error: function(data) {
+      error: function (data) {
         alert(JSON.stringify(data));
       }
     })
 
-
   }
 
+/**
+* Add a new user
+*/
 
-  
-  /**
-   * Add a new user
-   */
   function createUser() {
   //Create JSON object
   var user = {
@@ -147,10 +132,40 @@ function createBook() {
 
 }
 
-  /**
-   * Delete user
-   */
+/**
+ * Delete user
+ */
 
+function deleteUser(selectedUser) {
+
+  var user = selectedUser.data();
+  console.log(user);
+  console.log(user.id);
+
+  $.ajax({
+    url: "https://localhost:8000/deleteuser",
+    type: "POST",
+    dataType: "json",
+    xhrFields: {withCredentials: true},
+    data: JSON.stringify({
+      "id" : user.id
+    }),
+
+    success: function (data) {
+      $('#usersTable').DataTable().row( $(selectedUser).parents('tr') ).remove().draw();
+      alert("Du har nu slettet følgende bruger: " + user.id +"med brugernavn: "+user.username);
+      console.log(JSON.stringify(data));
+    },
+
+    error: function (data) {
+      alert(JSON.stringify(data));
+    }
+  })
+}
+
+/**
+* Log out
+ */
 
   $("#logOutLink").on("click", function(){
     SDK.logOut();

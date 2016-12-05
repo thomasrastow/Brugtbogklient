@@ -51,6 +51,18 @@ var SDK = {
     }
   },
 
+  Ad: {
+    getAll: function (cb) {
+      SDK.request({method: "GET", url: "/getads"}, cb);
+    },
+    getMyAds: function (cb) {
+      SDK.request({method: "GET", url: "/getmyads"}, cb);
+    },
+    create: function (data, cb) {
+      SDK.request({method: "POST", url: "/createad", data:data}, cb);
+    }
+  },
+
   Author: {
     getAll: function (cb) {
       SDK.request({method: "GET", url: "/authors"}, cb);

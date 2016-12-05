@@ -46,6 +46,7 @@
                 <h1>Administrator panel</h1>
             </div>
 
+            <!--Books table-->
             <div class="panel panel-primary">
                 <div class="panel-heading">
                     <h3 class="panel-title">Bøger</h3>
@@ -71,6 +72,7 @@
                 </div>
             </div>
 
+            <!--Users table-->
             <div class="panel panel-primary">
                 <div class="panel-heading">
                     <h3 class="panel-title">Brugere</h3>
@@ -257,7 +259,10 @@
         });
 
         //Delete book button
-
+        $('#booksTable').on("click", "button", function () {
+            var selectedBook = $('#booksTable').DataTable().row( $(this).parents('tr') );
+            deleteBook(selectedBook);
+        });
 
         /**
          * User
@@ -273,37 +278,10 @@
          });
 
          //Delete user button
-         $('#usersTable').on("click", "button", function () {
-            var data = $('#usersTable').DataTable().row( $(this).parents('tr') ).data();
-            deleteUser(this);
-            alert(data[0] + "Ønskes denne bog slettet?");
+         $('#usersTable').on('click', "button", function () {
+             var selectedUser = $('#usersTable').DataTable().row( $(this).parents('tr') );
+             deleteUser(selectedUser);
          });
-
-
-        $('#booksTable').on("click", "button", function () {
-            var rowBook = $('#booksTable').DataTable().row( $(this).parents('tr') );
-            deleteBook(rowBook);
-           // alert(data[0] + "Ønskes denne bog slettet?"); Prøv nu og se om det virker
-        });
-
-        /*
-        Delete button in book table prøv lige at kør koden igen ok
-
-        $('#booksTable').on("click", "button", function (e) {
-            e.preventDefault();
-
-            Slet
-                    .title( 'Slet bog' )
-                    .message( "Er du sikker på du ønsker at slette denne bog?" )
-                    .buttons( {"label": "Slet", "fn": function () { book.submit()}})
-                    .remove( $(this).closest('tr'));
-
-        });
-        */
-
-
-        //Delete button in user table
-
 
     });
 

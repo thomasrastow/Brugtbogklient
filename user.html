@@ -5,10 +5,11 @@
     <link rel="stylesheet" href="lib/css/bootstrap.css">
     <link rel="stylesheet" href="lib/css/bootstrap.lumen.min.css">
     <link rel="stylesheet" href="css/sticky-footer.css">
+    <link rel="stylesheet" href="lib/css/dataTables.bootstrap.min.css">
 
 
     <meta charset="UTF-8">
-    <title>CBS Brugtbogsbørs</title>
+    <title>Bruger panel</title>
 
 </head>
 <body>
@@ -32,23 +33,93 @@
 
                     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-2">
                         <ul class="nav navbar-nav">
-                            <li><a href="books.html">Se alle bøger</a></li>
-                            <li><a href="about.html">Om os</a></li>
+                            <li><a href="ads.html">Se alle annoncer</a></li>
                         </ul>
                         <ul class="nav navbar-nav navbar-right">
-                            <li><a href="login.html">Log ind</a></li>
+                            <li><a href="index.html">Log ud</a></li>
                         </ul>
                     </div>
                 </div>
             </nav>
 
-            <div class="jumbotron">
-                <h1>Velkommen til CBS Brugtbogsbørs!</h1>
-                <p>På denne side kan du som CBS studerende købe og sælge alle dine studiebøger. Alt du skal gøre er at oprette
-                    dig som bruger, og så er du klar!</p>
-                <p><a class="btn btn-success btn-lg" href="books.html">Se alle bøger her!</a></p>
+
+
+            <div class="page-header">
+                <h1>Mine annoncer</h1>
             </div>
 
+            <!--Ads table-->
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Annoncer</h3>
+                </div>
+                <div class="panel-body">
+
+                    <table class="table table-striped" id="adsTable">
+                        <thead>
+                        <th>ISBN</th>
+                        <th>Pris</th>
+                        <th>Stand</th>
+                        <th>Slet annonce</th>
+                        </thead>
+                    </table>
+
+                    <hr>
+                    <!-- Button trigger modal -->
+                    <button class="btn btn-success" id="newAdButton">
+                        <span class="glyphicon glyphicon-plus"></span> Opret ny annonce
+                    </button>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<!-- New Ad Model -->
+<div class="modal fade" id="newAdModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                        aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">Opret ny annonce</h4>
+            </div>
+            <div class="modal-body">
+
+                <div class="row" >
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label class="control-label" for="adIsbn">ISBN</label>
+                            <input class="form-control" id="adIsbn" type="text">
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label class="control-label" for="adPrice">Pris</label>
+                            <input class="form-control" id="adPrice" type="text">
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label class="control-label" for="adRating">Stand</label>
+                            <input class="form-control" id="adRating" type="text">
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label class="control-label" for="adComment">Kommentar</label>
+                            <input class="form-control" id="adComment" type="text">
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Luk</button>
+                <button type="button" class="btn btn-success" id="createAdButton">Opret annonce</button>
+            </div>
         </div>
     </div>
 </div>
@@ -61,7 +132,33 @@
 
 <script src="lib/js/jquery-3.1.1.js"></script>
 <script src="lib/js/bootstrap.js"></script>
-<script src="js/sdk.js"></script>
+<script src="lib/js/jquery.dataTables.min.js"></script>
+<script src="lib/js/dataTables.bootstrap.min.js"></script>
 
+<script src="js/sdk.js"></script>
+<script src="js/user.page.js"></script>
+
+<script type="text/javascript">
+
+    $(document).ready(function () {
+
+        getMyAds();
+
+        /**
+         * Add
+         */
+
+        //Create add button in table
+        $("#newAdButton").on("click", function () {
+            $('#newAdModal').modal('show');
+        });
+
+        //Create book button in pop-up window
+        $("#createAdButton").on("click", function () {
+            createAd();
+        });
+    });
+
+</script>
 </body>
 </html>
