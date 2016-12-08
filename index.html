@@ -46,9 +46,83 @@
         <h1>Velkommen til CBS Brugtbogsbørs!</h1>
         <p>På denne side kan du som CBS studerende købe og sælge alle dine studiebøger. Alt du skal gøre er at oprette
           dig som bruger, og så er du klar!</p>
-        <p><a class="btn btn-success btn-lg" href="books.html">Se alle bøger her!</a></p>
+
+        <!-- Button trigger modal -->
+        <p> <button class="btn btn-success btn-lg" id="newUserButton">
+          <span class="glyphicon glyphicon-plus"></span> Opret dig som bruger her!</button></p>
       </div>
 
+    </div>
+  </div>
+</div>
+
+<!-- New User Modal -->
+<div class="modal fade" id="newUserModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">Opret ny bruger</h4>
+      </div>
+      <div class="modal-body">
+
+        <div class="row" >
+          <div class="col-md-12">
+            <div class="form-group">
+              <label class="control-label" for="userUsername">Brugernavn</label>
+              <input class="form-control" id="userUsername" type="text">
+            </div>
+          </div>
+          <div class="col-md-12">
+            <div class="form-group">
+              <label class="control-label" for="userPassword">Adgangskode</label>
+              <input class="form-control" id="userPassword" type="text">
+            </div>
+          </div>
+          <div class="col-md-12">
+            <div class="form-group">
+              <label class="control-label" for="userEmail">Email</label>
+              <input class="form-control" id="userEmail" type="text">
+            </div>
+          </div>
+          <div class="col-md-12">
+            <div class="form-group">
+              <label class="control-label" for="userPhonenumber">Tlf. nummer</label>
+              <input class="form-control" id="userPhonenumber" type="text">
+            </div>
+          </div>
+          <div class="col-md-12">
+            <div class="form-group">
+              <label class="control-label" for="userAddress">Adresse</label>
+              <input class="form-control" id="userAddress" type="text">
+            </div>
+          </div>
+          <div class="col-md-2">
+            <div class="form-group">
+              <label class="control-label" for="userMobilePay">MobilePay</label>
+              <input id="userMobilePay" type="checkbox">
+            </div>
+          </div>
+          <div class="col-md-2">
+            <div class="form-group">
+              <label class="control-label" for="userCash">Kontanter</label>
+              <input id="userCash" type="checkbox">
+            </div>
+          </div>
+          <div class="col-md-2">
+            <div class="form-group">
+              <label class="control-label" for="userTransfer">Bankoverførsel</label>
+              <input id="userTransfer" type="checkbox">
+            </div>
+          </div>
+        </div>
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Luk</button>
+        <button type="button" class="btn btn-success" id="createUserButton">Opret bruger</button>
+      </div>
     </div>
   </div>
 </div>
@@ -61,7 +135,25 @@
 
 <script src="lib/js/jquery-3.1.1.js"></script>
 <script src="lib/js/bootstrap.js"></script>
+<script src="lib/js/jquery.dataTables.min.js"></script>
+<script src="lib/js/dataTables.bootstrap.min.js"></script>
+
 <script src="js/sdk.js"></script>
+<script src="js/index.page.js"></script>
+
+<script type="text/javascript">
+
+  //Create user button
+  $("#newUserButton").on("click", function () {
+    $('#newUserModal').modal('show');
+  });
+
+  //Create user button in modal
+  $("#createUserButton").on("click", function () {
+    createUser();
+  })
+
+</script>
 
 </body>
 </html>

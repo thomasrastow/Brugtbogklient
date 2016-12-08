@@ -89,13 +89,6 @@
                         </thead>
                     </table>
 
-
-                    <hr>
-                    <!-- Button trigger modal -->
-                    <button class="btn btn-success" id="addNewUserButton">
-                        <span class="glyphicon glyphicon-plus"></span> Opret ny bruger
-                    </button>
-
                 </div>
             </div>
 
@@ -150,77 +143,6 @@
     </div>
 </div>
 
-<!-- New User Modal -->
-<div class="modal fade" id="newUserModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
-                        aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title">Opret ny bruger</h4>
-            </div>
-            <div class="modal-body">
-
-                <div class="row" >
-                    <div class="col-md-12">
-                        <div class="form-group">
-                            <label class="control-label" for="userUsername">Brugernavn</label>
-                            <input class="form-control" id="userUsername" type="text">
-                        </div>
-                    </div>
-                    <div class="col-md-12">
-                        <div class="form-group">
-                            <label class="control-label" for="userPassword">Adgangskode</label>
-                            <input class="form-control" id="userPassword" type="text">
-                        </div>
-                    </div>
-                    <div class="col-md-12">
-                        <div class="form-group">
-                            <label class="control-label" for="userEmail">Email</label>
-                            <input class="form-control" id="userEmail" type="text">
-                        </div>
-                    </div>
-                    <div class="col-md-12">
-                        <div class="form-group">
-                            <label class="control-label" for="userPhonenumber">Tlf. nummer</label>
-                            <input class="form-control" id="userPhonenumber" type="text">
-                        </div>
-                    </div>
-                    <div class="col-md-12">
-                        <div class="form-group">
-                            <label class="control-label" for="userAddress">Adresse</label>
-                            <input class="form-control" id="userAddress" type="text">
-                        </div>
-                    </div>
-                    <div class="col-md-2">
-                        <div class="form-group">
-                            <label class="control-label" for="userMobilePay">MobilePay</label>
-                            <input id="userMobilePay" type="checkbox">
-                        </div>
-                    </div>
-                    <div class="col-md-2">
-                        <div class="form-group">
-                            <label class="control-label" for="userCash">Kontanter</label>
-                            <input id="userCash" type="checkbox">
-                        </div>
-                    </div>
-                    <div class="col-md-2">
-                        <div class="form-group">
-                            <label class="control-label" for="userTransfer">Bankoverførsel</label>
-                            <input id="userTransfer" type="checkbox">
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Luk</button>
-                <button type="button" class="btn btn-success" id="createUserButton">Opret bruger</button>
-            </div>
-        </div>
-    </div>
-</div>
-
 
 <footer class="footer">
     <div class="container">
@@ -238,7 +160,6 @@
 
 
 
-
 <script type="text/javascript">
 
     $(document).ready(function () {
@@ -253,7 +174,7 @@
             $('#newBookModal').modal('show');
         });
 
-        //Create book button in pop-up window
+        //Create book button in modal
         $("#createBookButton").on("click", function () {
             createBook();
         });
@@ -267,15 +188,6 @@
         /**
          * User
         */
-        //Create user button in table
-         $("#addNewUserButton").on("click", function () {
-            $('#newUserModal').modal('show');
-         });
-
-         //Create user button in pop-up window
-         $("#createUserButton").on("click", function () {
-         createUser();
-         });
 
          //Delete user button
          $('#usersTable').on('click', "button", function () {

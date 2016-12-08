@@ -34,6 +34,7 @@
                     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-2">
                         <ul class="nav navbar-nav">
                             <li><a href="ads.html">Se alle annoncer</a></li>
+                            <li><a href="ads.html">Se mine reservationer</a></li>
                         </ul>
                         <ul class="nav navbar-nav navbar-right">
                             <li><a href="index.html">Log ud</a></li>
@@ -45,22 +46,42 @@
 
 
             <div class="page-header">
-                <h1>Mine annoncer</h1>
+                <h1>Bruger panel</h1>
+            </div>
+
+            <!--Books table-->
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Bøger</h3>
+                </div>
+                <div class="panel-body">
+
+                    <table class="table table-striped" id="allBooksTable">
+                        <thead>
+                        <th>ISBN</th>
+                        <th>Titel</th>
+                        <th>Forfatter</th>
+                        <th>Udgave</th>
+                        </thead>
+                    </table>
+
+                </div>
             </div>
 
             <!--Ads table-->
             <div class="panel panel-primary">
                 <div class="panel-heading">
-                    <h3 class="panel-title">Annoncer</h3>
+                    <h3 class="panel-title">Mine annoncer</h3>
                 </div>
                 <div class="panel-body">
 
-                    <table class="table table-striped" id="adsTable">
+                    <table class="table table-striped" id="myAdsTable">
                         <thead>
                         <th>ISBN</th>
                         <th>Pris</th>
                         <th>Stand</th>
-                        <th>Slet annonce</th>
+                        <th>Slet</th>
+                        <th>Rediger</th>
                         </thead>
                     </table>
 
@@ -73,6 +94,53 @@
                 </div>
             </div>
 
+        </div>
+    </div>
+</div>
+
+<!-- Udate Ad Model -->
+<div class="modal fade" id="updateAdModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                        aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">Rediger annonce</h4>
+            </div>
+            <div class="modal-body">
+
+                <div class="row" >
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label class="control-label" for="updateAdIsbn">ISBN</label>
+                            <input class="form-control" id="updateAdIsbn" type="text">
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label class="control-label" for="updateAdPrice">Pris</label>
+                            <input class="form-control" id="updateAdPrice" type="text">
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label class="control-label" for="updateAdRating">Stand (1-5)</label>
+                            <input class="form-control" id="updateAdRating" type="text">
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label class="control-label" for="updateAdComment">Kommentar</label>
+                            <input class="form-control" id="updateAdComment" type="text">
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Luk</button>
+                <button type="button" class="btn btn-success" id="updateAdButton">Opdater annonce</button>
+            </div>
         </div>
     </div>
 </div>
@@ -103,7 +171,7 @@
                     </div>
                     <div class="col-md-4">
                         <div class="form-group">
-                            <label class="control-label" for="adRating">Stand</label>
+                            <label class="control-label" for="adRating">Stand (1-5)</label>
                             <input class="form-control" id="adRating" type="text">
                         </div>
                     </div>
@@ -141,7 +209,7 @@
 <script type="text/javascript">
 
     $(document).ready(function () {
-
+        getAllBooks();
         getMyAds();
 
         /**
@@ -157,6 +225,12 @@
         $("#createAdButton").on("click", function () {
             createAd();
         });
+
+        //Delete add button in table
+        $('#myAdsTable').on('click', "button", function () {
+            var selectedAd = $('#myAdsTable').DataTable().row( $(this).parents('tr') );
+            deleteAd(selectedAd);
+        })
     });
 
 </script>

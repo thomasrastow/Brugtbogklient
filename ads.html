@@ -45,7 +45,7 @@
 
             <div class="page-header">
                 <div class="panel-heading">
-                    <h1>Se alle annoncer</h1>
+                    <h1>Alle annoncer</h1>
                 </div>
 
             </div>
@@ -54,8 +54,9 @@
                     <thead>
                     <th>ISBN</th>
                     <th>Titel</th>
-                    <th>Stand</th>
+                    <th>Stand (1-5)</th>
                     <th>Pris</th>
+                    <th>Reservér</th>
                     </thead>
                 </table>
             </div>
@@ -63,6 +64,82 @@
     </div>
 </div>
 
+<!--Reserve ad modal-->
+<div class="modal fade" id="reserveAdModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                        aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">Reservér bog</h4>
+            </div>
+            <div class="modal-body">
+
+                <div class="row" >
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label class="control-label" for="adISBN">ISBN</label>
+                            <input class="form-control" id="adISBN" type="text" placeholder="" required>
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label class="control-label" for="adTitle">Titel</label>
+                            <input class="form-control" id="adTitle" type="text">
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label class="control-label" for="adEdition">Udgave</label>
+                            <input class="form-control" id="adEdition" type="text">
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label class="control-label" for="adRating">Stand</label>
+                            <input class="form-control" id="adRating" type="text">
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label class="control-label" for="adComment">Kommentar</label>
+                            <input class="form-control" id="adComment" type="text">
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label class="control-label" for="adPhonenumber">Tlf. nummer</label>
+                            <input class="form-control" id="adPhonenumber" type="text">
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        <div class="form-group">
+                            <label class="control-label" for="adMobilePay">MobilePay</label>
+                            <input id="adMobilePay" type="checkbox">
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        <div class="form-group">
+                            <label class="control-label" for="adCash">Kontanter</label>
+                            <input id="adCash" type="checkbox">
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        <div class="form-group">
+                            <label class="control-label" for="adTransfer">Bankoverførsel</label>
+                            <input id="adTransfer" type="checkbox">
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Luk</button>
+                <button type="button" class="btn btn-success" id="reserveAdButton">Reservér bog</button>
+            </div>
+        </div>
+    </div>
+</div>
 
 <footer class="footer">
     <div class="container">
