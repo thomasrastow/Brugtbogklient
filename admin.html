@@ -190,7 +190,7 @@
         */
 
          //Delete user button
-         $('#usersTable').on('click', "button", function () {
+         $('#usersTable').on('click', "#deleteUserButton", function () {
              var selectedUser = $('#usersTable').DataTable().row( $(this).parents('tr') );
              deleteUser(selectedUser);
          });
@@ -198,6 +198,5 @@
     });
 
 </script>
-
 </body>
 </html>

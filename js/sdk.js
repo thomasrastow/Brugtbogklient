@@ -38,11 +38,8 @@ var SDK = {
 
     create: function (data,cb) {
       SDK.request({method: "POST", url: "/createuser", data:data}, cb);
-    },
-
-    current:function () {
-      return SDK.Storage.load("user");
     }
+
   },
 
   Publisher: {
@@ -60,6 +57,9 @@ var SDK = {
     },
     create: function (data, cb) {
       SDK.request({method: "POST", url: "/createad", data:data}, cb);
+    },
+    update: function (data, cb) {
+      SDK.request({method: "POST", url: "/updatead", data:data}, cb);
     }
   },
 

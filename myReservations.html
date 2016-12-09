@@ -7,8 +7,9 @@
     <link rel="stylesheet" href="css/sticky-footer.css">
     <link rel="stylesheet" href="lib/css/dataTables.bootstrap.min.css">
 
+
     <meta charset="UTF-8">
-    <title>Annoncer</title>
+    <title>Mine reservationer</title>
 
 </head>
 <body>
@@ -21,8 +22,7 @@
             <nav class="navbar navbar-inverse">
                 <div class="container-fluid">
                     <div class="navbar-header">
-                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
-                                data-target="#bs-example-navbar-collapse-2">
+                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-2">
                             <span class="sr-only">Toggle navigation</span>
                             <span class="icon-bar"></span>
                             <span class="icon-bar"></span>
@@ -33,7 +33,7 @@
 
                     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-2">
                         <ul class="nav navbar-nav">
-                            <li><a href="user.html">Se mine annoncer</a></li>
+                            <li><a href="ads.html">Se alle annoncer</a></li>
                             <li><a href="myReservations.html">Se mine reservationer</a></li>
                         </ul>
                         <ul class="nav navbar-nav navbar-right">
@@ -44,103 +44,94 @@
             </nav>
 
 
-            <div class="page-header">
-                <div class="panel-heading">
-                    <h1>Alle annoncer</h1>
-                </div>
 
+            <div class="page-header">
+                <h1>Mine reservationer</h1>
             </div>
-            <div class="panel-body">
-                <table class="table table-striped" id="allAdsTable">
-                    <thead>
-                    <th>ISBN</th>
-                    <th>Titel</th>
-                    <th>Stand (1-5)</th>
-                    <th>Pris</th>
-                    <th>Reservér</th>
-                    </thead>
-                </table>
+
+
+            <!--My reservations table-->
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Mine reservationer</h3>
+                </div>
+                <div class="panel-body">
+
+                    <table class="table table-striped" id="myReservationsTable">
+                        <thead>
+                        <th>ISBN</th>
+                        <th>Pris</th>
+                        <th>Stand</th>
+                        <th>Se info</th>
+                        </thead>
+                    </table>
+
+
+                </div>
             </div>
+
         </div>
     </div>
 </div>
 
-<!--Reserve ad modal-->
-<div class="modal fade" id="reserveAdModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+<!-- Reservation info modal -->
+<div class="modal fade" id="infoModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
                         aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title">Reservér bog</h4>
+                <h4 class="modal-title">Info om reservation</h4>
             </div>
             <div class="modal-body">
 
                 <div class="row" >
                     <div class="col-md-12">
                         <div class="form-group">
-                            <label class="control-label" for="adISBN">ISBN</label>
-                            <input class="form-control" id="adISBN" type="text" placeholder="" required>
+                            <label class="control-label" for="reservationIsbn">ISBN</label>
+                            <input class="form-control" id="reservationIsbn" type="text">
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label class="control-label" for="reservationPrice">Pris</label>
+                            <input class="form-control" id="reservationPrice" type="text">
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label class="control-label" for="reservationRating">Stand (1-5)</label>
+                            <input class="form-control" id="reservationRating" type="text">
                         </div>
                     </div>
                     <div class="col-md-12">
                         <div class="form-group">
-                            <label class="control-label" for="adTitle">Titel</label>
-                            <input class="form-control" id="adTitle" type="text">
-                        </div>
-                    </div>
-                    <div class="col-md-3">
-                        <div class="form-group">
-                            <label class="control-label" for="adEdition">Udgave</label>
-                            <input class="form-control" id="adEdition" type="text">
-                        </div>
-                    </div>
-                    <div class="col-md-3">
-                        <div class="form-group">
-                            <label class="control-label" for="adRating">Stand</label>
-                            <input class="form-control" id="adRating" type="text">
-                        </div>
-                    </div>
-                    <div class="col-md-5">
-                        <div class="form-group">
-                            <label class="control-label" for="adPrice">Pris</label>
-                            <input class="form-control" id="adPrice" type="text">
+                            <label class="control-label" for="reservationComment">Kommentar</label>
+                            <input class="form-control" id="reservationComment" type="text">
                         </div>
                     </div>
                     <div class="col-md-12">
                         <div class="form-group">
-                            <label class="control-label" for="adComment">Kommentar</label>
-                            <input class="form-control" id="adComment" type="text">
-                        </div>
-                    </div>
-                    <div class="col-md-12">
-                        <div class="form-group">
-                            <label class="control-label" for="adUser">Oprettet af</label>
-                            <input class="form-control" id="adUser" type="text">
-                        </div>
-                    </div>
-                    <div class="col-md-12">
-                        <div class="form-group">
-                            <label class="control-label" for="adPhonenumber">Tlf. nummer</label>
-                            <input class="form-control" id="adPhonenumber" type="text">
+                            <label class="control-label" for="reservationPhonenumber">Tlf. nummer</label>
+                            <input class="form-control" id="reservationPhonenumber" type="text">
                         </div>
                     </div>
                     <div class="col-md-2">
                         <div class="form-group">
-                            <label class="control-label" for="adMobilePay">MobilePay</label>
-                            <input id="adMobilePay" type="checkbox">
+                            <label class="control-label" for="reservationMobilePay">MobilePay</label>
+                            <input id="reservationMobilePay" type="checkbox">
                         </div>
                     </div>
                     <div class="col-md-2">
                         <div class="form-group">
-                            <label class="control-label" for="adCash">Kontanter</label>
-                            <input id="adCash" type="checkbox">
+                            <label class="control-label" for="reservationCash">Kontanter</label>
+                            <input id="reservationCash" type="checkbox">
                         </div>
                     </div>
                     <div class="col-md-2">
                         <div class="form-group">
-                            <label class="control-label" for="adTransfer">Bankoverførsel</label>
-                            <input id="adTransfer" type="checkbox">
+                            <label class="control-label" for="reservationTransfer">Bankoverførsel</label>
+                            <input id="reservationTransfer" type="checkbox">
                         </div>
                     </div>
                 </div>
@@ -148,7 +139,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Luk</button>
-                <button type="button" class="btn btn-success" id="reserveAdButton">Reservér bog</button>
+                <button type="button" class="btn btn-success" id="deleteReservationButton">Slet reservation</button>
             </div>
         </div>
     </div>
@@ -160,30 +151,31 @@
     </div>
 </footer>
 
-
 <script src="lib/js/jquery-3.1.1.js"></script>
 <script src="lib/js/bootstrap.js"></script>
 <script src="lib/js/jquery.dataTables.min.js"></script>
 <script src="lib/js/dataTables.bootstrap.min.js"></script>
 
 <script src="js/sdk.js"></script>
-<script src="js/ads.page.js"></script>
+<script src="js/myReservations.page.js"></script>
 
 <script type="text/javascript">
 
     $(document).ready(function () {
 
-        getAds();
 
-        //Reserve book button in DataTable
-        $('#allAdsTable').on('click', "#reserveBookButton", function () {
-            var selectedAd = $('#allAdsTable').DataTable().row( $(this).parents('tr') );
-            reserveAd(selectedAd);
-        });
-
+        /**
+         * Add
+         */
+        /*
+        //Delete add button in table
+        $('#myAdsTable').on('click', "button", function () {
+            var selectedAd = $('#myAdsTable').DataTable().row( $(this).parents('tr') );
+            deleteAd(selectedAd);
+        })
+        */
     });
 
 </script>
-
 </body>
 </html>

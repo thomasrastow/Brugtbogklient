@@ -26,19 +26,26 @@ function getAllBooks() {
 
 function getMyAds() {
     //Fires on page-load
+
+    var editAd;
+
     SDK.Ad.getMyAds(function (err, data) {
-        if (err) throw err;
+        editAd = data;
+        if (err) throw JSON.stringify(err);
 
         $("#myAdsTable").DataTable({
             data: data,
             columns: [
-                {data : "isbn"},
-                {data : "price"},
-                {data : "rating"},
-                {defaultContent: "<button class='deleteAdButton'>Slet</button>"},
-                {defaultContent: "<button class='editAdButton'>Rediger</button>"}
+                {data: "isbn"},
+                {data: "price"},
+                {data: "rating"},
+                {defaultContent: "<button id='deleteAdButton'>Slet</button>"},
+                {defaultContent: "<button id='editAdButton'>Rediger</button>"}
             ]
-        });
+        })
+    });
+}
+
 
 /**
  * Delete ad
@@ -46,22 +53,22 @@ function getMyAds() {
 
 function deleteAd (selectedAd) {
 
-    var ads = selectedAd.data();
-    console.log(ads);
-    console.log(ads.adid);
+    var ad = selectedAd.data();
+    console.log(ad);
+    console.log(ad.adId);
 
     $.ajax({
         url: "https://localhost:8000/deletead",
-        type: "POSt",
+        type: "POST",
         dataType: "json",
         xhrFields: {withCredentials: true},
         data: JSON.stringify({
-            "adid": ads.adid
+            "id": ad.adId
         }),
 
         success: function (data) {
             $('#myAdsTable').DataTable().row( $(selectedAd).parents('tr') ).remove().draw();
-            alert("Du har nu slettet følgende annonce: " + ads.adid );
+            alert("Du har nu slettet følgende annonce: " + ad.isbn );
             console.log(JSON.stringify(data));
         },
 
@@ -69,7 +76,6 @@ function deleteAd (selectedAd) {
             alert(JSON.stringify(data));
         }
     })
-
 }
 
 
@@ -77,19 +83,42 @@ function deleteAd (selectedAd) {
  * Edit ad
  */
 
-        $(".editAdButton").on("click", function () {
+function editAd (selectedAd) {
 
-            $("#updateAdIsbn").val("");
-            $("#updateAdPrice").val("");
-            $("#updateAdRating").val("");
-            $("#updateAdComment").val("");
 
-            $("#updateAdModal").modal();
-        });
+    var ad = selectedAd.data();
 
-    });
+
+        //$("#updateAdIsbn").val(ad.isbn);
+        $("#updateAdPrice").val(ad.price);
+        $("#updateAdRating").val(ad.rating);
+        $("#updateAdComment").val(ad.comment);
+
+        $("#updateAdModal").modal();
+
 }
 
+function updateAd () {
+
+    var ad = {
+        //isbn: +$("#updateAdIsbn").val(),
+        price: +$("#updateAdPrice").val(),
+        rating: +$("#updateAdRating").val(),
+        comment: +$("#updateAdComment").val()
+    };
+
+    //Update ad
+    SDK.Ad.update(ad, function (err, data) {
+        if(err) throw JSON.stringify(err);
+
+        alert("Du har nu opdateret følgende annonce: " + ad.isbn);
+        console.log(JSON.stringify(data));
+
+        $("#updateAdModal").modal("hide");
+    });
+
+    
+}
 
 /**
  * Create ad
@@ -109,13 +138,13 @@ function createAd() {
     SDK.Ad.create(ad, function(err, data){
         if(err) throw JSON.stringify(err);
 
-        alert(JSON.stringify(data));
+        alert("Du har nu oprettet følgende annonce: " + ad.isbn + " med kommentaren: " + ad.comment );
+        console.log(JSON.stringify(data));
 
         $("#newAdModal").modal("hide");
     });
 
 }
-
 
 /**
  * Log out
