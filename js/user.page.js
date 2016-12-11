@@ -83,13 +83,13 @@ function deleteAd (selectedAd) {
  * Edit ad
  */
 
+//Autofill modal
 function editAd (selectedAd) {
 
 
     var ad = selectedAd.data();
 
 
-        //$("#updateAdIsbn").val(ad.isbn);
         $("#updateAdPrice").val(ad.price);
         $("#updateAdRating").val(ad.rating);
         $("#updateAdComment").val(ad.comment);
@@ -98,10 +98,41 @@ function editAd (selectedAd) {
 
 }
 
+//Update add
+function updateAd() {
+    var adId = +$("#UpdateAdId").val();
+    var price = +$("#updateAdPrice").val();
+    var rating = + $("#updateAdRating").val();
+    var comment = $("#updateAdComment").val();
+
+    $.ajax({
+        url: "https://localhost:8000/updatead",
+        dataType: "json",
+        type: "POST",
+        xhrFields: {withCredentials: true},
+        data: JSON.stringify({
+            "adId": adId,
+            "price": price,
+            "rating": rating,
+            "comment": comment
+        }),
+
+        success: function (data) {
+            alert("Success");
+            alert(JSON.stringify(data))
+        },
+        error: function (data) {
+            alert("Failure");
+            alert(JSON.stringify(data))
+        }
+    });
+}
+
+
+/*
 function updateAd () {
 
     var ad = {
-        //isbn: +$("#updateAdIsbn").val(),
         price: +$("#updateAdPrice").val(),
         rating: +$("#updateAdRating").val(),
         comment: +$("#updateAdComment").val()
@@ -119,6 +150,7 @@ function updateAd () {
 
     
 }
+*/
 
 /**
  * Create ad

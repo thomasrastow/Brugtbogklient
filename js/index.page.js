@@ -16,10 +16,10 @@ function createUser() {
     };
 
     //Create user
-    SDK.User.create(user, function(err, data) {
+    SDK.User.create(user, function(err) {
         if(err) throw JSON.stringify(err);
 
-        alert(JSON.stringify(data));
+        alert("Tillykke, du er nu oprettet som bruger i systemet!");
 
         $("#newUserModal").modal("hide");
     });

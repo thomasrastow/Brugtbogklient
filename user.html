@@ -34,8 +34,10 @@
 
                     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-2">
                         <ul class="nav navbar-nav">
+                            <li><a href="user.html">Startside</a></li>
                             <li><a href="ads.html">Se alle annoncer</a></li>
                             <li><a href="myReservations.html">Se mine reservationer</a></li>
+                            <li><a href="updateUser.html">Opdater brugeroplysninger</a></li>
                         </ul>
                         <ul class="nav navbar-nav navbar-right">
                             <li><a href="index.html">Log ud</a></li>
@@ -158,14 +160,6 @@
             <div class="modal-body">
 
                 <div class="row" >
-                    <!--
-                    <div class="col-md-12">
-                        <div class="form-group">
-                            <label class="control-label" for="updateAdIsbn">ISBN</label>
-                            <input class="form-control" id="updateAdIsbn" type="text" value="adIsbn">
-                        </div>
-                    </div>
-                    -->
                     <div class="col-md-4">
                         <div class="form-group">
                             <label class="control-label" for="updateAdPrice">Pris</label>
@@ -245,6 +239,7 @@
             var selectedAd = $('#myAdsTable').DataTable().row( $(this).parents('tr') );
             deleteAd(selectedAd);
         });
+
     });
 
 </script>

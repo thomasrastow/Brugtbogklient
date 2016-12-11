@@ -182,8 +182,9 @@
         //Delete book button
         $('#booksTable').on("click", "button", function () {
             var selectedBook = $('#booksTable').DataTable().row( $(this).parents('tr') );
-            deleteBook(selectedBook);
+            deleteBook(selectedBook, $(this));
         });
+
 
         /**
          * User

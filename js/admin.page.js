@@ -45,26 +45,6 @@ function getAllUsers () {
   }
 
 /**
- * Delete user
- */
-
-/*
-$(".deleteUserButton").on("click", function () {
-
-  var $deleteUser = $(this);
-
-  var userId = {
-    id : $deleteUser.data("userid")
-  };
-
-  SDK.User.delete(userId, function (err) {
-    if (err) throw JSON.stringify(err);
-    location.reload();
-  })
-});
-*/
-
-/**
  * Add a new book
  */
 function createBook() {
@@ -92,7 +72,7 @@ function createBook() {
 * Delete book
 */
 
-  function deleteBook (selectedBook) {
+  function deleteBook (selectedBook, row) {
 
     var book = selectedBook.data();
     console.log(book);
@@ -108,7 +88,7 @@ function createBook() {
       }),
 
       success: function (data) {
-        $('#booksTable').DataTable().row( $(selectedBook).parents('tr') ).remove().draw();
+        $('#booksTable').DataTable().row( $(row).parents('tr') ).remove().draw();
         alert("Du har nu slettet følgende bog: " + book.title +" med ISBN: "+ book.isbn);
         console.log(JSON.stringify(data));
       },
@@ -123,32 +103,6 @@ function createBook() {
  * Delete user
  */
 
-/*
-function deleteUser(row) {
-
-  var selectedUser = JSON.parse(localStorage.getItem('user'));
-
-  var user = row.data();
-
-  $.ajax({
-    url: urlUser + "/" + user.userId,
-    type: "DELETE",
-    headers: {
-      "authorization" : selectedUser.token
-    },
-    success: function(data) {
-      $('#usersTable').DataTable().row( $(row).parents('tr') ).remove().draw();
-      alert("Du har nu slettet følgende bruger: " + user.username);
-    },
-    error: function (data) {
-      alert(JSON.stringify(data));
-    }
-    
-  });
-  
-}
-*/
-
 function deleteUser (selectedUser) {
 
   var user = selectedUser.data();
@@ -156,7 +110,7 @@ function deleteUser (selectedUser) {
   console.log(user.userId);
 
   $.ajax({
-    url: "https://localhost:8000/deleteuser",
+    url: "https://localhost:8000/deleteuseradmin",
     type: "POST",
     dataType: "json",
     xhrFields: {withCredentials: true},
