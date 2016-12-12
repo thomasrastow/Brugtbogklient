@@ -62,9 +62,9 @@
                     <table class="table table-striped" id="myReservationsTable">
                         <thead>
                         <th>ISBN</th>
-                        <th>Pris</th>
-                        <th>Stand</th>
-                        <th>Se info</th>
+                        <th>Oprettet af</th>
+                        <th>Tlf.</th>
+                        <th>Fjern reservation</th>
                         </thead>
                     </table>
 
@@ -76,76 +76,6 @@
     </div>
 </div>
 
-<!-- Reservation info modal -->
-<div class="modal fade" id="infoModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
-                        aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title">Info om reservation</h4>
-            </div>
-            <div class="modal-body">
-
-                <div class="row" >
-                    <div class="col-md-12">
-                        <div class="form-group">
-                            <label class="control-label" for="reservationIsbn">ISBN</label>
-                            <input class="form-control" id="reservationIsbn" type="text">
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="form-group">
-                            <label class="control-label" for="reservationPrice">Pris</label>
-                            <input class="form-control" id="reservationPrice" type="text">
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="form-group">
-                            <label class="control-label" for="reservationRating">Stand (1-5)</label>
-                            <input class="form-control" id="reservationRating" type="text">
-                        </div>
-                    </div>
-                    <div class="col-md-12">
-                        <div class="form-group">
-                            <label class="control-label" for="reservationComment">Kommentar</label>
-                            <input class="form-control" id="reservationComment" type="text">
-                        </div>
-                    </div>
-                    <div class="col-md-12">
-                        <div class="form-group">
-                            <label class="control-label" for="reservationPhonenumber">Tlf. nummer</label>
-                            <input class="form-control" id="reservationPhonenumber" type="text">
-                        </div>
-                    </div>
-                    <div class="col-md-2">
-                        <div class="form-group">
-                            <label class="control-label" for="reservationMobilePay">MobilePay</label>
-                            <input id="reservationMobilePay" type="checkbox">
-                        </div>
-                    </div>
-                    <div class="col-md-2">
-                        <div class="form-group">
-                            <label class="control-label" for="reservationCash">Kontanter</label>
-                            <input id="reservationCash" type="checkbox">
-                        </div>
-                    </div>
-                    <div class="col-md-2">
-                        <div class="form-group">
-                            <label class="control-label" for="reservationTransfer">Bankoverførsel</label>
-                            <input id="reservationTransfer" type="checkbox">
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Luk</button>
-                <button type="button" class="btn btn-success" id="deleteReservationButton">Slet reservation</button>
-            </div>
-        </div>
-    </div>
-</div>
 
 <footer class="footer">
     <div class="container">
@@ -164,18 +94,14 @@
 <script type="text/javascript">
 
     $(document).ready(function () {
+        getMyReservations();
 
+        //Remove reservation
+        $('#myReservationsTable').on('click', "#removeReservationButton", function () {
+            var selectedAd = $('#myReservationsTable').DataTable().row( $(this).parents('tr') );
+            removeReservation(selectedAd);
+        });
 
-        /**
-         * Add
-         */
-        /*
-        //Delete add button in table
-        $('#myAdsTable').on('click', "button", function () {
-            var selectedAd = $('#myAdsTable').DataTable().row( $(this).parents('tr') );
-            deleteAd(selectedAd);
-        })
-        */
     });
 
 </script>

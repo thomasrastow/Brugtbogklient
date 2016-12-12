@@ -59,7 +59,8 @@
                     <th>Titel</th>
                     <th>Stand (1-5)</th>
                     <th>Pris</th>
-                    <th>Reservér</th>
+                    <th>Info</th>
+                    <th>Reserver</th>
                     </thead>
                 </table>
             </div>
@@ -67,14 +68,14 @@
     </div>
 </div>
 
-<!--Reserve ad modal-->
-<div class="modal fade" id="reserveAdModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+<!--Info ad modal-->
+<div class="modal fade" id="infoAdModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
                         aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title">Reservér bog</h4>
+                <h4 class="modal-title">Information om annonce</h4>
             </div>
             <div class="modal-body">
 
@@ -82,67 +83,61 @@
                     <div class="col-md-12">
                         <div class="form-group">
                             <label class="control-label" for="adISBN">ISBN</label>
-                            <input class="form-control" id="adISBN" type="text" placeholder="" required>
+                            <input class="form-control" id="adISBN" type="text" readonly>
                         </div>
                     </div>
                     <div class="col-md-12">
                         <div class="form-group">
-                            <label class="control-label" for="adTitle">Titel</label>
-                            <input class="form-control" id="adTitle" type="text">
+                            <label class="control-label" for="adTitle" >Titel</label>
+                            <input class="form-control" id="adTitle" type="text" readonly>
                         </div>
                     </div>
                     <div class="col-md-3">
                         <div class="form-group">
                             <label class="control-label" for="adEdition">Udgave</label>
-                            <input class="form-control" id="adEdition" type="text">
+                            <input class="form-control" id="adEdition" type="text" readonly>
                         </div>
                     </div>
                     <div class="col-md-3">
                         <div class="form-group">
                             <label class="control-label" for="adRating">Stand</label>
-                            <input class="form-control" id="adRating" type="text">
+                            <input class="form-control" id="adRating" type="text" readonly>
                         </div>
                     </div>
                     <div class="col-md-5">
                         <div class="form-group">
                             <label class="control-label" for="adPrice">Pris</label>
-                            <input class="form-control" id="adPrice" type="text">
+                            <input class="form-control" id="adPrice" type="text" readonly>
                         </div>
                     </div>
                     <div class="col-md-12">
                         <div class="form-group">
                             <label class="control-label" for="adComment">Kommentar</label>
-                            <input class="form-control" id="adComment" type="text">
+                            <input class="form-control" id="adComment" type="text" readonly>
                         </div>
                     </div>
                     <div class="col-md-12">
                         <div class="form-group">
                             <label class="control-label" for="adUser">Oprettet af</label>
-                            <input class="form-control" id="adUser" type="text">
-                        </div>
-                    </div>
-                    <div class="col-md-12">
-                        <div class="form-group">
-                            <label class="control-label" for="adPhonenumber">Tlf. nummer</label>
-                            <input class="form-control" id="adPhonenumber" type="text">
+                            <input class="form-control" id="adUser" type="text" readonly>
                         </div>
                     </div>
                     <div class="col-md-2">
                         <div class="form-group">
                             <label class="control-label" for="adMobilePay">MobilePay</label>
-                            <input id="adMobilePay" type="checkbox">
+                            <input id="adMobilePay" type="checkbox" disabled>
                         </div>
                     </div>
                     <div class="col-md-2">
                         <div class="form-group">
                             <label class="control-label" for="adCash">Kontanter</label>
-                            <input id="adCash" type="checkbox">
+                            <input id="adCash" type="checkbox" disabled>
                         </div>
                     </div>
                     <div class="col-md-2">
                         <div class="form-group">
                             <label class="control-label" for="adTransfer">Bankoverførsel</label>
-                            <input id="adTransfer" type="checkbox">
+                            <input id="adTransfer" type="checkbox" disabled>
                         </div>
                     </div>
                 </div>
@@ -150,7 +145,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Luk</button>
-                <button type="button" class="btn btn-success" id="reserveAdButton">Reservér bog</button>
+                <!--<button type="button" class="btn btn-success" id="reserveAdButton">Reservér bog</button>-->
             </div>
         </div>
     </div>
@@ -177,8 +172,14 @@
 
         getAds();
 
-        //Reserve book button in DataTable
-        $('#allAdsTable').on('click', "#reserveBookButton", function () {
+        //Info button in DataTable
+        $('#allAdsTable').on('click', "#infoAdButton", function () {
+            var selectedAd = $('#allAdsTable').DataTable().row( $(this).parents('tr') );
+            infoAd(selectedAd);
+        });
+
+        //Reserve ad
+        $('#allAdsTable').on('click', "#reserveAdButton", function () {
             var selectedAd = $('#allAdsTable').DataTable().row( $(this).parents('tr') );
             reserveAd(selectedAd);
         });

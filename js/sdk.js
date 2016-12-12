@@ -4,12 +4,11 @@ var SDK = {
 
   request: function (options, cb) {
 
-
     //Perform XHR
     $.ajax({
       url: SDK.serverURL + options.url,
       method: options.method,
-      contentType: "application/json",
+   //   contentType: "application/json",
       dataType: "json",
       data: JSON.stringify(options.data),
       xhrFields:{withCredentials: true},
@@ -48,12 +47,6 @@ var SDK = {
 
   },
 
-  Publisher: {
-    getAll: function (cb) {
-      SDK.request({method: "GET", url: "/publishers"}, cb);
-    }
-  },
-
   Ad: {
     getAll: function (cb) {
       SDK.request({method: "GET", url: "/getads"}, cb);
@@ -69,9 +62,9 @@ var SDK = {
     }
   },
 
-  Author: {
-    getAll: function (cb) {
-      SDK.request({method: "GET", url: "/authors"}, cb);
+  Reservation: {
+    getMyReservations: function (cb) {
+      SDK.request({method: "GET", url: "/getmyreservations"}, cb);
     }
   },
 

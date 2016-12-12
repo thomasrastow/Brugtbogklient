@@ -63,7 +63,7 @@ function deleteAd (selectedAd) {
         dataType: "json",
         xhrFields: {withCredentials: true},
         data: JSON.stringify({
-            "id": ad.adId
+            "adId": ad.adId
         }),
 
         success: function (data) {
@@ -89,18 +89,23 @@ function editAd (selectedAd) {
 
     var ad = selectedAd.data();
 
+    $("#updateAdPrice").val(ad.price);
+    $("#updateAdRating").val(ad.rating);
+    $("#updateAdComment").val(ad.comment);
 
-        $("#updateAdPrice").val(ad.price);
-        $("#updateAdRating").val(ad.rating);
-        $("#updateAdComment").val(ad.comment);
+    $("#updateAdModal").modal();
 
-        $("#updateAdModal").modal();
-
+    $("#updateAdButton").on("click", function(){
+        updateAd(ad);
+    });
 }
 
-//Update add
-function updateAd() {
-    var adId = +$("#UpdateAdId").val();
+
+//Update ad
+function updateAd(ad) {
+
+
+    var adId = ad.adId;
     var price = +$("#updateAdPrice").val();
     var rating = + $("#updateAdRating").val();
     var comment = $("#updateAdComment").val();
@@ -117,40 +122,17 @@ function updateAd() {
             "comment": comment
         }),
 
-        success: function (data) {
-            alert("Success");
-            alert(JSON.stringify(data))
+        success: function () {
+            alert("Du har nu opdateret din annonce!");
+
+            window.location.href ="user.html";
         },
         error: function (data) {
-            alert("Failure");
+            alert("Der skete en fejl, prøv igen");
             alert(JSON.stringify(data))
         }
     });
 }
-
-
-/*
-function updateAd () {
-
-    var ad = {
-        price: +$("#updateAdPrice").val(),
-        rating: +$("#updateAdRating").val(),
-        comment: +$("#updateAdComment").val()
-    };
-
-    //Update ad
-    SDK.Ad.update(ad, function (err, data) {
-        if(err) throw JSON.stringify(err);
-
-        alert("Du har nu opdateret følgende annonce: " + ad.isbn);
-        console.log(JSON.stringify(data));
-
-        $("#updateAdModal").modal("hide");
-    });
-
-    
-}
-*/
 
 /**
  * Create ad
@@ -170,7 +152,7 @@ function createAd() {
     SDK.Ad.create(ad, function(err, data){
         if(err) throw JSON.stringify(err);
 
-        alert("Du har nu oprettet følgende annonce: " + ad.isbn + " med kommentaren: " + ad.comment );
+        alert("Du har nu oprettet følgende annonce: " + ad.isbn + " Med kommentaren: " + ad.comment );
         console.log(JSON.stringify(data));
 
         $("#newAdModal").modal("hide");

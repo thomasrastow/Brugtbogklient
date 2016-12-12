@@ -229,11 +229,6 @@
             editAd(selectedAd);
         });
 
-        //Update ad button
-        $("#updateAdButton").on("click", function(){
-            updateAd();
-        });
-
         //Delete ad button
         $('#myAdsTable').on('click', "#deleteAdButton", function () {
             var selectedAd = $('#myAdsTable').DataTable().row( $(this).parents('tr') );
