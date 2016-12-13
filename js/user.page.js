@@ -70,6 +70,7 @@ function deleteAd (selectedAd) {
             $('#myAdsTable').DataTable().row( $(selectedAd).parents('tr') ).remove().draw();
             alert("Du har nu slettet følgende annonce: " + ad.isbn );
             console.log(JSON.stringify(data));
+            window.location.href ="user.html";
         },
 
         error: function (data){
@@ -154,6 +155,7 @@ function createAd() {
 
         alert("Du har nu oprettet følgende annonce: " + ad.isbn + " Med kommentaren: " + ad.comment );
         console.log(JSON.stringify(data));
+        window.location.href ="user.html";
 
         $("#newAdModal").modal("hide");
     });

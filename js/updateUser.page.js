@@ -1,9 +1,10 @@
+
+
 /**
  * Update user
  */
 
-//Virker delvist
-//function updateUser (user) {
+//function updateUser(user) {
 
     $("#updateUserButton").on("click", function updateUser(user){
 
@@ -35,8 +36,10 @@
         }),
 
         success: function (){
+
             window.location.href = "user.html";
             alert("Du har nu opdateret dine brugeroplysninger!");
+
 
         },
         error: function (data){
