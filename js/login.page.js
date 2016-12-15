@@ -11,6 +11,7 @@ $(document).ready(function () {
 
       //On wrong credentials
       if(err) {
+        alert("Det indtaste brugernavn eller adgangskode var forkert");
         return $("#loginForm").find(".form-group").addClass("has-error");
       }
       SDK.Storage.persist("user", data);

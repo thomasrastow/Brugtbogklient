@@ -61,7 +61,8 @@ function createBook() {
     SDK.Book.create(book, function(err, data){
       if(err) throw JSON.stringify(err);
 
-      alert(JSON.stringify(data));
+      alert("Du har nu oprettet følgende bog: " + book.title +" med ISBN: " + book.isbn);
+      window.location.href = "admin.html";
 
       $("#newBookModal").modal("hide");
     });
@@ -90,6 +91,7 @@ function createBook() {
       success: function (data) {
         $('#booksTable').DataTable().row( $(row).parents('tr') ).remove().draw();
         alert("Du har nu slettet følgende bog: " + book.title +" med ISBN: "+ book.isbn);
+        window.location.href = "admin.html";
         console.log(JSON.stringify(data));
       },
 
@@ -115,12 +117,13 @@ function deleteUser (selectedUser) {
     dataType: "json",
     xhrFields: {withCredentials: true},
     data: JSON.stringify({
-      "id" : user.userId
+      "userId" : user.userId
     }),
 
     success: function (data) {
       $('#usersTable').DataTable().row( $(selectedUser).parents('tr') ).remove().draw();
       alert("Du har nu slettet følgende bruger: " + user.username);
+      window.location.href = "admin.html";
       console.log(JSON.stringify(data));
     },
 

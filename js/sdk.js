@@ -8,7 +8,6 @@ var SDK = {
     $.ajax({
       url: SDK.serverURL + options.url,
       method: options.method,
-   //   contentType: "application/json",
       dataType: "json",
       data: JSON.stringify(options.data),
       xhrFields:{withCredentials: true},
@@ -38,9 +37,7 @@ var SDK = {
     create: function (data,cb) {
       SDK.request({method: "POST", url: "/createuser", data:data}, cb);
     },
-    //update: function (data,cb) {
-      //SDK.request({method: "POST", url: "/updateuser", data:data}, cb);
-    //},
+
     delete: function (data, cb) {
       SDK.request({method: "POST", url: "/deleteuser", data:data}, cb);
     }
@@ -65,10 +62,8 @@ var SDK = {
     }
   },
 
-  logOut:function() {
-    SDK.Storage.remove("tokenId");
-    SDK.Storage.remove("userId");
-    SDK.Storage.remove("user");
+  logOut:function(data, cb) {
+    SDK.request({method: "POST", url: "/logout", data: data}, cb);
   },
 
   login: function (username, password, cb) {
@@ -84,7 +79,6 @@ var SDK = {
       //On login-error
       if (err) return cb(err);
 
-      SDK.Storage.persist("tokenId", data.id);
       SDK.Storage.persist("userId", data.userId);
       SDK.Storage.persist("user", data.user);
 
@@ -94,7 +88,7 @@ var SDK = {
   },
 
   Storage: {
-    prefix: "BookStoreSDK",
+    prefix: "CBS Brugtbogsbørs",
     persist: function (key, value) {
       window.localStorage.setItem(this.prefix + key, (typeof value === 'object') ? JSON.stringify(value) : value)
     },

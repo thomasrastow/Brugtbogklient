@@ -1,10 +1,7 @@
 
-
 /**
  * Update user
  */
-
-//function updateUser(user) {
 
     $("#updateUserButton").on("click", function updateUser(user){
 
@@ -43,7 +40,7 @@
 
         },
         error: function (data){
-            alert("Brugernavn, email eller adresse eksisterer måske allerede, prøv igen!");
+            alert("Noget gik galt, prøv igen!");
             alert(JSON.stringify(data))
         }
     })

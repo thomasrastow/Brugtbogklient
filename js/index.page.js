@@ -17,7 +17,11 @@ function createUser() {
 
     //Create user
     SDK.User.create(user, function(err) {
-        if(err) throw JSON.stringify(err);
+
+        if(err) {
+            alert("Det indtastede brugernavn eller email eksisterer allerede, prøv igen!");
+            throw JSON.stringify(err);
+        }
 
         alert("Tillykke, du er nu oprettet som bruger i systemet!");
 
@@ -25,5 +29,4 @@ function createUser() {
     });
 
 }
-
 

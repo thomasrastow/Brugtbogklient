@@ -6,10 +6,8 @@
 
 function getAds() {
 
-    //var reserveAd;
 
     SDK.Ad.getAll(function (err, data) {
-        //reserveAd = data;
         if (err) throw JSON.stringify(err);
 
         $("#allAdsTable").DataTable({
@@ -73,8 +71,9 @@ function reserveAd(selectedAd) {
     }),
         success: function (data) {
             alert("Du har nu reserveret denne annonce");
+            window.location.href = "ads.html";
             console.log(JSON.stringify(data));
-            location.reload();
+
         },
         error: function (data) {
             alert("Der skete en fejl, prøv igen");
